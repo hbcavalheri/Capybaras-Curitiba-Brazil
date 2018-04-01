@@ -1,0 +1,31 @@
+---
+title: "Presence of Capybaras in Curitiba Parks (Brazil)"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE,warning=FALSE,comment=FALSE,message=FALSE)
+```
+
+### December 18, 2017
+##### Hamanda Badona Cavalheri
+
+###### https://en.wikipedia.org/wiki/Curitiba
+
+```{r}
+#devtools::install_github("rstudio/leaflet",force=TRUE)
+#use devtools to show map in browser
+library(leaflet)
+
+data<-data.frame("parques"=c("Atuba","Barigui","Cambui","Centro de Imigracao Japonesa","Das Pedreiras","Lago Azul","Iguacu Nautico","Passauna","Passeio Publico","Peladeiro","Sao Lourenco","Tangua","Tingui","Tulio Vargas"),"lat"=c(-25.388783,-25.429915,-25.478845,-25.498121,-25.384018,-25.572023,-25.508138,-25.470295,-25.425174,-25.478877,-25.386360,-25.378807,-25.392378,-25.456392),"lon"=c(-49.205170,-49.314502,-49.330898,-49.205916,-49.277627,-49.269923,-49.213586,-49.382583,-49.267568,-49.191272,-49.268427,-49.283040,-49.304598,-49.348748))
+
+capiIcon<-makeIcon(iconUrl="/Users/hamandacavalheri/Desktop/Coursera_Data Science/capivara.png",iconWidth=25,iconHeight=25,iconAnchorX=25,iconAnchorY = 16)
+
+data %>% 
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(icon=capiIcon,popup=data$parques)
+```
+
+#### Source: Tonetti, A.M. 2017, 'Paisagem e percepção - ocorrência de *Hydrochoerus hydrochaeris* (Linnaeus, 1766) em áreas verdes públicas de Curitiba-PR', PhD Thesis, Universidade Federal do Parana, Brazil.
